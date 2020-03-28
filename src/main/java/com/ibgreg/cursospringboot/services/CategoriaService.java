@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.ibgreg.cursospringboot.domain.Categoria;
+import com.ibgreg.cursospringboot.dto.CategoriaDTO;
 import com.ibgreg.cursospringboot.repositories.CategoriaRepository;
 import com.ibgreg.cursospringboot.services.exceptions.DataIntegrityException;
 import com.ibgreg.cursospringboot.services.exceptions.ObjectNotFoundException;
@@ -55,6 +56,10 @@ public class CategoriaService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos cadastrados!");
 		}
+	}
+	
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
 	}
 	
 }
